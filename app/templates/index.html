@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}BigPicture - Your Life at a Glance{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">BigPicture</h1>
+<p class="lead mb-4">A minimalist project management app for solopreneurs and generalists</p>
+
+<div class="row">
+    {% for bucket in buckets %}
+    <div class="col-md-6 col-lg-3">
+        <div class="card bucket-card">
+            <div class="card-header">
+                <h2 class="card-title h5 mb-0">{{ bucket.name }}</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-subtitle mb-2 text-muted">{{ bucket.subtitle }}</p>
+                <p class="card-text small fst-italic">{{ bucket.advice }}</p>
+                
+                <h3 class="h6 mt-3">Projects</h3>
+                <ul class="list-group list-group-flush mb-3">
+                    {% for project in bucket.projects %}
+                    <li class="list-group-item">
+                        <strong>{{ project.name }}</strong>
+                        <ul class="list-unstyled ms-3 small">
+                            {% for goal in project.goals %}
+                            <li>- {{ goal.description }}</li>
+                            {% endfor %}
+                        </ul>
+                        <form class="mt-2" onsubmit="return addGoal(event, {{ project.id }})">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" placeholder="Add a goal" required>
+                                <button class="btn btn-outline-secondary" type="submit">Add</button>
+                            </div>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                <form onsubmit="return addProject(event, {{ bucket.id }})">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="Add a project" required>
+                        <button class="btn btn-outline-secondary" type="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- If you need any page-specific JavaScript, you can add it here -->
+{% endblock %}
