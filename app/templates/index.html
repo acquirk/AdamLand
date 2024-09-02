@@ -1,24 +1,226 @@
 {% extends "base.html" %}
 
-{% block title %}Welcome to AdamLand{% endblock %}
+{% block styles %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+    body {
+        background-color: #e6dccf;
+        font-family: 'MedievalSharp', cursive;
+    }
+
+    .sidium-lourt-container {
+        max-width: 1200px;
+        margin: 20px auto;
+        background-color: #f0e6d2;
+        border: 8px solid #8b4513;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .medieval-title {
+        text-align: center;
+        color: #8b4513;
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .royal-messenger-section, .castle-image, .map-section, 
+    .royal-subjects, .projects-objects, .summary-section {
+        margin-bottom: 20px;
+        border: 3px solid #8b4513;
+        border-radius: 10px;
+        padding: 15px;
+        background-color: #fffaf0;
+    }
+
+    h2 {
+        color: #8b4513;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #8b4513;
+        padding-bottom: 5px;
+    }
+
+    .message-input {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .message-input input {
+        flex-grow: 1;
+        padding: 5px;
+        font-family: 'MedievalSharp', cursive;
+        border: 2px solid #8b4513;
+        border-radius: 5px;
+    }
+
+    .btn-svg, .btn-save {
+        background-color: #8b4513;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        margin-left: 10px;
+        cursor: pointer;
+        font-family: 'MedievalSharp', cursive;
+        border-radius: 5px;
+    }
+
+    .castle-image img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-section {
+        background-color: #d2b48c;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+    }
+
+    .grid-item {
+        background-color: #e6c796;
+        border: 2px solid #8b4513;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .grid-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .subject-icons, .object-icons {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+
+    .subject-icon, .object-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #8b4513;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .subject-icon:hover, .object-icon:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(139, 69, 19, 0.5);
+    }
+
+    .summary-section {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .summary-item {
+        flex: 1;
+        min-width: 200px;
+        margin: 10px;
+        padding: 10px;
+        background-color: #e6c796;
+        border: 2px solid #8b4513;
+        border-radius: 10px;
+    }
+
+    .summary-icons {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+
+    .summary-icon {
+        width: 60px;
+        height: 60px;
+        background-color: #8b4513;
+        border-radius: 10px;
+    }
+
+    .forge-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .forge-cell {
+        width: 30px;
+        height: 30px;
+        background-color: #d2b48c;
+        border: 1px solid #8b4513;
+        transition: all 0.3s ease;
+    }
+
+    .forge-cell:hover {
+        background-color: #8b4513;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Welcome to AdamLand</h1>
+<div class="sidium-lourt-container">
+    <h1 class="medieval-title">AdamLand</h1>
+    
+    <div class="royal-messenger-section">
+        <h2>Royal Messenger</h2>
+        <div class="message-input">
+            <input type="text" placeholder="Enter your message">
+            <button class="btn-svg">SVG</button>
+            <button class="btn-save">Save</button>
+        </div>
+    </div>
 
-<div class="row">
-    {% for village in villages %}
-    <div class="col-md-6 mb-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ village.name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ village.subtitle }}</h6>
-                <p class="card-text">{{ village.advice }}</p>
-                <a href="{{ url_for('view_village', village_id=village.id) }}" class="btn btn-primary">Visit Village</a>
+    <div class="map-section">
+        <div class="grid-container">
+            {% for village in villages %}
+            <div class="grid-item" onclick="location.href='{{ url_for('view_village', village_id=village.id) }}';">
+                <!-- Replace with actual village icon -->
+                <img src="{{ url_for('static', filename='img/village-icon.png') }}" alt="{{ village.name }}">
+                <h3>{{ village.name }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    
+    
+    <div class="summary-section">
+        <div class="summary-item">
+            <h3>Royal Messenger</h3>
+            <div class="summary-icons">
+                <div class="summary-icon villages"></div>
+                <div class="summary-icon buildings"></div>
+            </div>
+        </div>
+        <div class="summary-item">
+            <h3>Royal Buildings</h3>
+            <div class="summary-icons">
+                <div class="summary-icon buildings-chart"></div>
+                <div class="summary-icon projects-chart"></div>
+                <div class="summary-icon projects-diamond"></div>
+            </div>
+        </div>
+        <div class="summary-item">
+            <h3>Synthesis Forge</h3>
+            <div class="forge-grid">
+                <!-- You may want to replace this with actual forge data -->
+                {% for i in range(25) %}
+                <div class="forge-cell"></div>
+                {% endfor %}
             </div>
         </div>
     </div>
-    {% endfor %}
 </div>
-
-<a href="{{ url_for('add_village') }}" class="btn btn-success mt-3">Add New Village</a>
 {% endblock %}
+
