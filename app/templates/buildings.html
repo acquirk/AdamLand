@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Buildings</h1>
+<a href="{{ url_for('add_building') }}" class="btn btn-primary">Add New Building</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Village</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for building in buildings %}
+        <tr>
+            <td>{{ building.name }}</td>
+            <td>{{ building.type }}</td>
+            <td>{{ building.village.name }}</td>
+            <td>
+                <a href="{{ url_for('view_building', building_id=building.id) }}" class="btn btn-sm btn-info">View</a>
+                <a href="{{ url_for('edit_building', building_id=building.id) }}" class="btn btn-sm btn-warning">Edit</a>
+                <form action="{{ url_for('delete_building', building_id=building.id) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this building?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

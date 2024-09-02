@@ -61,18 +61,19 @@ def view_building(building_id):
 
 @app.route('/village/<int:village_id>/add_building', methods=['GET', 'POST'])
 def add_building(village_id):
-    village = Village.query.get_or_404(village_id)
+    villages = Village.query.all()
+    current_village = Village.query.get_or_404(village_id)
     if request.method == 'POST':
         new_building = Building(
             name=request.form['name'],
             description=request.form['description'],
-            village=village
+            village_id=request.form['village_id']
         )
         db.session.add(new_building)
         db.session.commit()
         flash('Building added successfully!', 'success')
-        return redirect(url_for('view_village', village_id=village.id))
-    return render_template('add_building.html', village=village)
+        return redirect(url_for('view_village', village_id=new_building.village_id))
+    return render_template('add_building.html', villages=villages, current_village=current_village)
 
 @app.route('/building/<int:building_id>/edit', methods=['GET', 'POST'])
 def edit_building(building_id):
