@@ -15,7 +15,7 @@ Each Bucket contains multiple Projects, and each Project can have multiple Goals
 
 ## Features
 
-- Four pre-defined Buckets with customizable subtitles and advice
+- Four pre-defined  with customizable subtitles and advice
 - Create and manage multiple Projects within each Bucket
 - Add Goals to Projects with deadlines
 - Integrate with Google Calendar or iCal for deadline tracking
