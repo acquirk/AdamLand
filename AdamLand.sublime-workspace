@@ -1,0 +1,381 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"align",
+				"text-align\tproperty"
+			],
+			[
+				"border-rad",
+				"border-bottom-left-radius\tproperty"
+			],
+			[
+				"get",
+				"getDate"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"bord",
+				"border-bottom\tproperty"
+			],
+			[
+				"text",
+				"text-decoration\tproperty"
+			],
+			[
+				"font",
+				"font-style\tproperty"
+			],
+			[
+				"bac",
+				"background-color\tproperty"
+			],
+			[
+				"text-tra",
+				"text-transform\tproperty"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/__init__.py",
+			"settings":
+			{
+				"buffer_size": 416,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"codex",
+				"Codex AI: Instruct AI to edit highlighted text"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/greyflannel/Dropbox (Personal)/AdamLand",
+		"/Users/greyflannel/Dropbox (Personal)/AdamLand/app"
+	],
+	"file_history":
+	[
+		"/Users/greyflannel/Dropbox (Personal)/BigPicture/app/routes.py",
+		"/Users/greyflannel/Dropbox (Personal)/AdamLand/app/__init__.py",
+		"/Users/greyflannel/Dropbox (Personal)/AdamLand/app/models.py",
+		"/Users/greyflannel/Dropbox (Personal)/AdamLand/app/templates/index.html",
+		"/Users/greyflannel/Dropbox (Personal)/AdamLand/AdamLand.md",
+		"/Users/greyflannel/Dropbox (Personal)/AdamLand/config.py",
+		"/Users/greyflannel/Dropbox (Personal)/AdamLand/requirements.txt",
+		"/Users/greyflannel/Dropbox (Personal)/BigPicture/app/templates/base.html",
+		"/Users/greyflannel/Dropbox (Personal)/BigPicture/README.md",
+		"/Users/greyflannel/Dropbox (Personal)/BigPicture/app/create_db.py",
+		"/Users/greyflannel/Dropbox (Personal)/BigPicture/static/styles.css",
+		"/Users/greyflannel/Dropbox (Personal)/BigPicture/app/templates/main.js",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/admin/model/list.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/admin/packaging/list.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/admin/spirit/list.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/app.py",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/Procfile",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/models.py",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/admin/model/delete_row.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/.flaskenv",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/aider.env",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/static/css/style.css",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/index.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/admin/base.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/configurator.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/admin/index.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/admin/master.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/base.html",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/Procfile",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/static/js/configurator.js",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/logs/bottlepricer.log",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/configurator.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/bottlepricer.sublime-project",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/dbcreate.py",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/templates/login.html",
+		"/Users/greyflannel/Dropbox (Personal)/Cardinal Spirits/Copacking/bottlepricer/create_admin.py",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/fuzzy_matcher.py",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/templates/index.html",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/static/js/main.js",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/static/css/style.css",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/templates/base.html",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/templates/add_equipment.html",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/app.py",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/schema.sql",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/database.py",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/templates/edit_equipment.html",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/templates/admin.html",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/static/js/admin.js",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/equipment_data.json",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/init_data.py",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/templates/associate_equipment.html",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/templates/add_video.html",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/db_backup.py",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/equipment_backup_20240814_124352.json",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/.env",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/directory_tree.py",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/directory_tree_20240812_100706.txt",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/runtime.txt",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/procfile",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/requirements.txt",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/static/styles.css",
+		"/Users/greyflannel/Dropbox (Personal)/MedGas/Website/medgasapp_test/static/js/app.js",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/temp/admin/wp-content/themes/guildwise-medgas/single.php",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/temp/admin/wp-content/themes/understrap/inc/setup.php",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/temp/admin/wp-content/themes/guildwise-child/style.css",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/temp/admin/wp-content/themes/understrap/global-templates/navbar-branding.php",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/temp/admin/wp-content/themes/understrap/header.php",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/temp/admin/wp-content/themes/guildwise-medgas/functions.php",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/temp/admin/wp-content/themes/JointsWP-CSS-master/functions/theme-support.php",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/temp/admin/wp-content/themes/guildwise-medgas/style.css",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/temp/admin/wp-blog-header.php",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/admin/wp-content/themes/guildwise-medgas/style.css",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/admin/wp-content/themes/guildwise-medgas/outlet.php",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/admin/wp-content/themes/JointsWP-CSS-master/style.css",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/admin/wp-content/themes/twentytwentytwo/style.css",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/admin/wp-content/themes/JointsWP-CSS-master/single.php",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/admin/wp-content/themes/guildwise-medgas/templates/outlet.html",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/admin/wp-content/themes/guildwise-medgas/templates/outlet-detail-page.html",
+		"/Users/greyflannel/Library/Application Support/minecraft/launcher_profiles.json",
+		"/Users/greyflannel/Dropbox (Personal)/Mac/Downloads/index.php",
+		"/Users/greyflannel/Library/Application Support/minecraft/launcher_accounts.json",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/db/migrate/20230329144557_create_evaluation.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/evaluation/new.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/evaluation/show.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/evaluation/edit.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/test/controllers/options_controller_test.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/config/environments/development.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/config/environments/production.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/db/migrate/20230329142509_create_idea.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/db/migrate/20230329151735_create_decision.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/db/migrate/20230329181118_create_entrepreneur.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/db/schema.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/idea/index.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/idea/edit.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/idea/show.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/idea/new.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/controllers/idea_controller.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/controllers/evaluation_controller.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/models/characteristic.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/test/controllers/entrepreneurs_controller_test.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/models/idea.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/db/migrate/20230329142509_create_options.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/db/migrate/20230329145725_create_characteristic.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/db/migrate/20230329181118_create_entrepreneurs.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/OLD-schema.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/helpers/characteristic_helper.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/models/evaluation.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/controllers/entrepreneur_controller.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/helpers/evaluation_helper.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/entrepreneur/index.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/entrepreneur/edit.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/entrepreneur/show.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/entrepreneur/create.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/entrepreneur/new.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/entrepreneur/update.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/entrepreneur/destroy.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/helpers/idea_helper.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/helpers/entrepreneur_helper.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/config/routes.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/db/migrate/20230329145725_create_criteria.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/test/controllers/criteria_controller_test.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/test/models/criterium_test.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/helpers/criteria_helper.rb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/criterium/index.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/criterium/edit.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/criterium/show.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/criterium/_form.html.erb",
+		"/Users/greyflannel/Dropbox (Personal)/DecisionMaker/DecisionApp/app/views/criterium/new.html.erb"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 107.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/__init__.py",
+					"selected": true,
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 416,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 108.0
+	},
+	"pinned_build_system": "",
+	"project": "AdamLand.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 305.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 710.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 359.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}King's Castle{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Welcome to the King's Castle</h1>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Royal Messenger</h5>
+        <p class="card-text">Send a message to the King or receive royal decrees.</p>
+        <a href="{{ url_for('kings_messenger') }}" class="btn btn-primary">Access Royal Messenger</a>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Map Room</h5>
+        <p class="card-text">View the entire kingdom and make strategic decisions.</p>
+        <a href="#" class="btn btn-primary">Enter Map Room</a>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Synthesis Forge</h5>
+        <p class="card-text">Generate new ideas by combining existing concepts.</p>
+        <a href="#" class="btn btn-primary">Access Synthesis Forge</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,33 +1,16 @@
-/* static/css/styles.css */
-
 body {
-    padding-top: 60px;
-    background-color: #f8f9fa;
+    background-color: #f0f0f0;
 }
 
-.bucket-card {
-    margin-bottom: 20px;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
 }
 
-.bucket-card .card-header {
-    background-color: #007bff;
-    color: white;
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-.bucket-card .card-subtitle {
-    font-size: 0.9rem;
-}
-
-.bucket-card .card-text {
-    font-size: 0.8rem;
-}
-
-.list-group-item {
-    background-color: #ffffff;
-}
-
-.input-group-sm > .form-control,
-.input-group-sm > .btn {
-    font-size: 0.875rem;
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
