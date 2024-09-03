@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SelectField, SubmitField
 from wtforms.validators import DataRequired
 from app import app, db, csrf
-from app.models import Bucket, Project, Goal, List, ListItem
+from app.models import Bucket, Project, Goal, List, ListItem, InboxItem
 from datetime import datetime
 
 @app.context_processor
@@ -20,19 +20,46 @@ class ProjectForm(FlaskForm):
     bucket_id = SelectField('Bucket', coerce=int, validators=[DataRequired()])
     submit = SubmitField('Add Project')
 
+class InboxItemForm(FlaskForm):
+    content = StringField('New Idea', validators=[DataRequired()])
+    submit = SubmitField('Add to Inbox')
+
 # Main pages
 @app.route('/')
 def index():
     buckets = Bucket.query.all()
     for bucket in buckets:
         bucket.projects = Project.query.filter_by(bucket_id=bucket.id).all()
-    return render_template('index.html', buckets=buckets)
+    inbox_items = InboxItem.query.filter_by(bucket_id=None).all()
+    inbox_form = InboxItemForm()
+    return render_template('index.html', buckets=buckets, inbox_items=inbox_items, inbox_form=inbox_form)
 
 # Bucket routes
 @app.route('/bucket/<int:bucket_id>')
 def view_bucket(bucket_id):
     bucket = Bucket.query.get_or_404(bucket_id)
-    return render_template('bucket.html', bucket=bucket)
+    inbox_items = InboxItem.query.filter_by(bucket_id=bucket_id).all()
+    return render_template('bucket.html', bucket=bucket, inbox_items=inbox_items)
+
+@app.route('/add_inbox_item', methods=['POST'])
+def add_inbox_item():
+    form = InboxItemForm()
+    if form.validate_on_submit():
+        new_item = InboxItem(content=form.content.data)
+        db.session.add(new_item)
+        db.session.commit()
+        flash('New idea added to inbox!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/assign_inbox_item/<int:item_id>', methods=['POST'])
+def assign_inbox_item(item_id):
+    item = InboxItem.query.get_or_404(item_id)
+    bucket_id = request.form.get('bucket_id')
+    if bucket_id:
+        item.bucket_id = bucket_id
+        db.session.commit()
+        flash('Idea assigned to bucket!', 'success')
+    return redirect(url_for('index'))
 
 @app.route('/bucket/add', methods=['GET', 'POST'])
 def add_bucket():

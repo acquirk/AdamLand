@@ -6,6 +6,20 @@
         <h1 class="card-title">{{ bucket.name }}</h1>
         <p class="card-text"><strong>Description:</strong> {{ bucket.subtitle }}</p>
 
+        <h2 class="mt-4">Bucket Inbox</h2>
+        {% if inbox_items %}
+            <ul class="list-group mb-4">
+            {% for item in inbox_items %}
+                <li class="list-group-item">
+                    {{ item.content }}
+                    <small class="text-muted">Added on {{ item.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p class="card-text">No items in the bucket inbox.</p>
+        {% endif %}
+
         <h2 class="mt-4">Projects</h2>
         {% if bucket.projects.all() %}
             <ul class="list-group">

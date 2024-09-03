@@ -5,8 +5,37 @@
 {% block content %}
 
 <div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Idea Inbox</h4>
+                <form method="POST" action="{{ url_for('add_inbox_item') }}">
+                    {{ inbox_form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ inbox_form.content(class="form-control", placeholder="New idea") }}
+                    </div>
+                    {{ inbox_form.submit(class="btn btn-primary") }}
+                </form>
+                <ul class="list-group mt-3">
+                    {% for item in inbox_items %}
+                    <li class="list-group-item">
+                        {{ item.content }}
+                        <form method="POST" action="{{ url_for('assign_inbox_item', item_id=item.id) }}" class="mt-2">
+                            <select name="bucket_id" class="form-control">
+                                {% for bucket in buckets %}
+                                <option value="{{ bucket.id }}">{{ bucket.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="btn btn-sm btn-secondary mt-2">Assign to Bucket</button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
     {% for bucket in buckets %}
-    <div class="col-md-6 mb-4">
+    <div class="col-md-4 mb-4">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title"><a href="{{ url_for('view_bucket', bucket_id=bucket.id) }}" class="">{{ bucket.name }}</a></h4>
