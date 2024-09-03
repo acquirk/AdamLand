@@ -70,16 +70,15 @@ def add_project():
     form.bucket_id.choices = [(b.id, b.name) for b in Bucket.query.all()]
     
     if form.validate_on_submit():
-        bucket = Bucket.query.get(form.bucket_id.data)
         new_project = Project(
             name=form.name.data,
             description=form.description.data,
-            bucket=bucket
+            bucket_id=form.bucket_id.data
         )
         db.session.add(new_project)
         db.session.commit()
         flash('Project added successfully!', 'success')
-        return redirect(url_for('view_bucket', bucket_id=bucket.id))
+        return redirect(url_for('view_bucket', bucket_id=new_project.bucket_id))
     
     return render_template('add_project.html', form=form)
 
