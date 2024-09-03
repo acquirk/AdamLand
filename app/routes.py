@@ -108,7 +108,7 @@ def view_goal(goal_id):
     goal = Goal.query.get_or_404(goal_id)
     return render_template('goal.html', goal=goal)
 
-@app.route('/project/<int:project_id>/add_goal', methods=['GET', 'POST'])
+@app.route('/project/<int:project_id>/add_goal', methods=['POST'])
 def add_goal(project_id):
     project = Project.query.get_or_404(project_id)
     if request.method == 'POST':
@@ -120,8 +120,7 @@ def add_goal(project_id):
         db.session.add(new_goal)
         db.session.commit()
         flash('Goal added successfully!', 'success')
-        return redirect(url_for('view_project', project_id=project.id))
-    return render_template('add_goal.html', project=project)
+    return redirect(url_for('view_project', project_id=project.id))
 
 @app.route('/goal/<int:goal_id>/edit', methods=['GET', 'POST'])
 def edit_goal(goal_id):
@@ -145,7 +144,7 @@ def delete_goal(goal_id):
     return redirect(url_for('view_project', project_id=project_id))
 
 # List routes
-@app.route('/project/<int:project_id>/add_list', methods=['GET', 'POST'])
+@app.route('/project/<int:project_id>/add_list', methods=['POST'])
 def add_list(project_id):
     project = Project.query.get_or_404(project_id)
     if request.method == 'POST':
@@ -156,8 +155,7 @@ def add_list(project_id):
         db.session.add(new_list)
         db.session.commit()
         flash('List added successfully!', 'success')
-        return redirect(url_for('view_project', project_id=project.id))
-    return render_template('add_list.html', project=project)
+    return redirect(url_for('view_project', project_id=project.id))
 
 @app.route('/list/<int:list_id>/add_item', methods=['POST'])
 def add_list_item(list_id):
