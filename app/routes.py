@@ -32,7 +32,8 @@ def index():
         bucket.projects = Project.query.filter_by(bucket_id=bucket.id).all()
     inbox_items = InboxItem.query.filter_by(bucket_id=None).all()
     inbox_form = InboxItemForm()
-    return render_template('index.html', buckets=buckets, inbox_items=inbox_items, inbox_form=inbox_form)
+    assign_form = FlaskForm()  # Create a new form for CSRF protection
+    return render_template('index.html', buckets=buckets, inbox_items=inbox_items, inbox_form=inbox_form, form=assign_form)
 
 # Bucket routes
 @app.route('/bucket/<int:bucket_id>')
@@ -53,12 +54,16 @@ def add_inbox_item():
 
 @app.route('/assign_inbox_item/<int:item_id>', methods=['POST'])
 def assign_inbox_item(item_id):
-    item = InboxItem.query.get_or_404(item_id)
-    bucket_id = request.form.get('bucket_id')
-    if bucket_id:
-        item.bucket_id = bucket_id
-        db.session.commit()
-        flash('Idea assigned to bucket!', 'success')
+    form = FlaskForm()
+    if form.validate_on_submit():
+        item = InboxItem.query.get_or_404(item_id)
+        bucket_id = request.form.get('bucket_id')
+        if bucket_id:
+            item.bucket_id = bucket_id
+            db.session.commit()
+            flash('Idea assigned to bucket!', 'success')
+    else:
+        flash('Invalid form submission.', 'error')
     return redirect(url_for('index'))
 
 @app.route('/bucket/add', methods=['GET', 'POST'])
