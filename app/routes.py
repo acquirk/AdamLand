@@ -6,6 +6,11 @@ from app import app, db, csrf
 from app.models import Bucket, Project, Goal, List, ListItem
 from datetime import datetime
 
+@app.context_processor
+def inject_buckets():
+    buckets = Bucket.query.all()
+    return dict(buckets=buckets)
+
 class ProjectForm(FlaskForm):
     name = StringField('Project Name', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
