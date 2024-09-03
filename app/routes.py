@@ -2,7 +2,7 @@ from flask import render_template, request, jsonify, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SelectField, SubmitField
 from wtforms.validators import DataRequired
-from app import app, db
+from app import app, db, csrf
 from app.models import Bucket, Project, Goal, List, ListItem
 from datetime import datetime
 
@@ -202,9 +202,8 @@ def add_list_item(list_id):
 from flask import current_app
 
 @app.route('/list_item/<int:item_id>/toggle', methods=['POST'])
+@csrf.exempt
 def toggle_list_item(item_id):
-    if not current_app.config['WTF_CSRF_CHECK_DEFAULT']:
-        csrf.protect()
     item = ListItem.query.get_or_404(item_id)
     item.completed = not item.completed
     db.session.commit()
