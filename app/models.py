@@ -7,6 +7,7 @@ class Bucket(db.Model):
     subtitle = db.Column(db.String(128))
     advice = db.Column(db.String(256))
     projects = db.relationship('Project', backref='bucket', lazy='dynamic')
+    inbox_items = db.relationship('InboxItem', backref='bucket', lazy='dynamic')
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,3 +35,9 @@ class ListItem(db.Model):
     content = db.Column(db.String(256))
     completed = db.Column(db.Boolean, default=False)
     list_id = db.Column(db.Integer, db.ForeignKey('list.id'))
+
+class InboxItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(256))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    bucket_id = db.Column(db.Integer, db.ForeignKey('bucket.id'), nullable=True)
