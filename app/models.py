@@ -14,6 +14,7 @@ class Project(db.Model):
     description = db.Column(db.String(256))
     bucket_id = db.Column(db.Integer, db.ForeignKey('bucket.id'))
     goals = db.relationship('Goal', backref='project', lazy='dynamic')
+    lists = db.relationship('List', backref='project', lazy='dynamic')
 
 class Goal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -22,5 +23,14 @@ class Goal(db.Model):
     completed = db.Column(db.Boolean, default=False)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
 
+class List(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), index=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+    items = db.relationship('ListItem', backref='list', lazy='dynamic')
 
-    
+class ListItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(256))
+    completed = db.Column(db.Boolean, default=False)
+    list_id = db.Column(db.Integer, db.ForeignKey('list.id'))

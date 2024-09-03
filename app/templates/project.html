@@ -2,26 +2,83 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="mt-5 mb-4">Projects</h1>
-    
-    {% if projects %}
-        <div class="row">
-            {% for project in projects %}
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ project.name }}</h5>
-                            <p class="card-text">{{ project.description }}</p>
-                            <a href="{{ url_for('project', project_id=project.id) }}" class="btn btn-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
+    <h1 class="mt-5 mb-4">{{ project.name }}</h1>
+    <p>{{ project.description }}</p>
+
+    <h2 class="mt-4">Goals</h2>
+    {% if project.goals.all() %}
+        <ul class="list-group">
+            {% for goal in project.goals %}
+                <li class="list-group-item">
+                    <h5>{{ goal.description }}</h5>
+                    <p>Deadline: {{ goal.deadline.strftime('%Y-%m-%d') }}</p>
+                    <p>Status: {{ 'Completed' if goal.completed else 'In Progress' }}</p>
+                    <a href="{{ url_for('edit_goal', goal_id=goal.id) }}" class="btn btn-sm btn-primary">Edit</a>
+                    <form action="{{ url_for('delete_goal', goal_id=goal.id) }}" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </li>
             {% endfor %}
-        </div>
+        </ul>
     {% else %}
-        <p>No projects found.</p>
+        <p>No goals found.</p>
     {% endif %}
-    
-    <a href="{{ url_for('add_project') }}" class="btn btn-success mt-3">Add New Project</a>
+    <a href="{{ url_for('add_goal', project_id=project.id) }}" class="btn btn-success mt-3">Add New Goal</a>
+
+    <h2 class="mt-4">Lists</h2>
+    {% if project.lists.all() %}
+        {% for list in project.lists %}
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ list.name }}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for item in list.items %}
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="item{{ item.id }}" 
+                                       {% if item.completed %}checked{% endif %}
+                                       onchange="toggleItem({{ item.id }})">
+                                <label class="form-check-label {% if item.completed %}text-muted{% endif %}" for="item{{ item.id }}">
+                                    {{ item.content }}
+                                </label>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="card-footer">
+                    <form action="{{ url_for('add_list_item', list_id=list.id) }}" method="POST" class="input-group">
+                        <input type="text" name="content" class="form-control" placeholder="New item" required>
+                        <button type="submit" class="btn btn-outline-secondary">Add</button>
+                    </form>
+                </div>
+            </div>
+            <form action="{{ url_for('delete_list', list_id=list.id) }}" method="POST" class="mt-2">
+                <button type="submit" class="btn btn-sm btn-danger">Delete List</button>
+            </form>
+        {% endfor %}
+    {% else %}
+        <p>No lists found.</p>
+    {% endif %}
+    <a href="{{ url_for('add_list', project_id=project.id) }}" class="btn btn-success mt-3">Add New List</a>
 </div>
+
+<script>
+function toggleItem(itemId) {
+    fetch(`/list_item/${itemId}/toggle`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const checkbox = document.getElementById(`item${itemId}`);
+            const label = checkbox.nextElementSibling;
+            label.classList.toggle('text-muted');
+        }
+    });
+}
+</script>
 {% endblock %}

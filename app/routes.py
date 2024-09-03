@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SelectField, SubmitField
 from wtforms.validators import DataRequired
 from app import app, db
-from app.models import Bucket, Project, Goal
+from app.models import Bucket, Project, Goal, List, ListItem
 from datetime import datetime
 
 class ProjectForm(FlaskForm):
@@ -144,7 +144,49 @@ def delete_goal(goal_id):
     flash('Goal deleted successfully!', 'success')
     return redirect(url_for('view_project', project_id=project_id))
 
+# List routes
+@app.route('/project/<int:project_id>/add_list', methods=['GET', 'POST'])
+def add_list(project_id):
+    project = Project.query.get_or_404(project_id)
+    if request.method == 'POST':
+        new_list = List(
+            name=request.form['name'],
+            project=project
+        )
+        db.session.add(new_list)
+        db.session.commit()
+        flash('List added successfully!', 'success')
+        return redirect(url_for('view_project', project_id=project.id))
+    return render_template('add_list.html', project=project)
 
+@app.route('/list/<int:list_id>/add_item', methods=['POST'])
+def add_list_item(list_id):
+    list_ = List.query.get_or_404(list_id)
+    if request.method == 'POST':
+        new_item = ListItem(
+            content=request.form['content'],
+            list=list_
+        )
+        db.session.add(new_item)
+        db.session.commit()
+        flash('Item added successfully!', 'success')
+    return redirect(url_for('view_project', project_id=list_.project_id))
+
+@app.route('/list_item/<int:item_id>/toggle', methods=['POST'])
+def toggle_list_item(item_id):
+    item = ListItem.query.get_or_404(item_id)
+    item.completed = not item.completed
+    db.session.commit()
+    return jsonify({'success': True})
+
+@app.route('/list/<int:list_id>/delete', methods=['POST'])
+def delete_list(list_id):
+    list_ = List.query.get_or_404(list_id)
+    project_id = list_.project_id
+    db.session.delete(list_)
+    db.session.commit()
+    flash('List deleted successfully!', 'success')
+    return redirect(url_for('view_project', project_id=project_id))
 
 # Error handling routes
 @app.errorhandler(404)
