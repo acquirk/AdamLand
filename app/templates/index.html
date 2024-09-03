@@ -21,6 +21,7 @@
                     <li class="list-group-item">
                         {{ item.content }}
                         <form method="POST" action="{{ url_for('assign_inbox_item', item_id=item.id) }}" class="mt-2">
+                            {{ csrf_token() }}
                             <select name="bucket_id" class="form-control">
                                 {% for bucket in buckets %}
                                 <option value="{{ bucket.id }}">{{ bucket.name }}</option>
