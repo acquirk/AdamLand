@@ -40,7 +40,8 @@ def index():
 def view_bucket(bucket_id):
     bucket = Bucket.query.get_or_404(bucket_id)
     inbox_items = InboxItem.query.filter_by(bucket_id=bucket_id).all()
-    return render_template('bucket.html', bucket=bucket, inbox_items=inbox_items)
+    form = FlaskForm()  # Create a new form for CSRF protection
+    return render_template('bucket.html', bucket=bucket, inbox_items=inbox_items, form=form)
 
 @app.route('/add_inbox_item', methods=['POST'])
 def add_inbox_item():
@@ -65,6 +66,29 @@ def assign_inbox_item(item_id):
     else:
         flash('Invalid form submission.', 'error')
     return redirect(url_for('index'))
+
+@app.route('/assign_inbox_item_to_project/<int:item_id>', methods=['POST'])
+def assign_inbox_item_to_project(item_id):
+    form = FlaskForm()
+    if form.validate_on_submit():
+        item = InboxItem.query.get_or_404(item_id)
+        project_id = request.form.get('project_id')
+        if project_id:
+            project = Project.query.get_or_404(project_id)
+            # Create a new Goal from the InboxItem
+            new_goal = Goal(
+                description=item.content,
+                project=project
+            )
+            db.session.add(new_goal)
+            db.session.delete(item)  # Remove the item from the inbox
+            db.session.commit()
+            flash('Inbox item assigned to project as a new goal!', 'success')
+        else:
+            flash('Invalid project selection.', 'error')
+    else:
+        flash('Invalid form submission.', 'error')
+    return redirect(url_for('view_bucket', bucket_id=item.bucket_id))
 
 @app.route('/bucket/add', methods=['GET', 'POST'])
 def add_bucket():
