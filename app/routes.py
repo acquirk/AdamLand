@@ -55,10 +55,11 @@ def view_project(project_id):
     project = Project.query.get_or_404(project_id)
     return render_template('project.html', project=project)
 
-@app.route('/bucket/<int:bucket_id>/add_project', methods=['GET', 'POST'])
-def add_project(bucket_id):
-    bucket = Bucket.query.get_or_404(bucket_id)
+@app.route('/add_project', methods=['GET', 'POST'])
+def add_project():
+    buckets = Bucket.query.all()
     if request.method == 'POST':
+        bucket = Bucket.query.get(request.form['bucket_id'])
         new_project = Project(
             name=request.form['name'],
             description=request.form['description'],
@@ -68,7 +69,7 @@ def add_project(bucket_id):
         db.session.commit()
         flash('Project added successfully!', 'success')
         return redirect(url_for('view_bucket', bucket_id=bucket.id))
-    return render_template('add_project.html', bucket=bucket)
+    return render_template('add_project.html', buckets=buckets)
 
 @app.route('/project/<int:project_id>/edit', methods=['GET', 'POST'])
 def edit_project(project_id):
