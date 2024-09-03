@@ -159,7 +159,7 @@ def edit_goal(goal_id):
         goal.completed = 'completed' in request.form
         db.session.commit()
         flash('Goal updated successfully!', 'success')
-        return redirect(url_for('view_goal', goal_id=goal.id))
+        return redirect(url_for('view_project', project_id=goal.project_id))
     return render_template('edit_goal.html', goal=goal)
 
 @app.route('/goal/<int:goal_id>/delete', methods=['POST'])
