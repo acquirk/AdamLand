@@ -62,8 +62,9 @@ def delete_bucket(bucket_id):
 @app.route('/project/<int:project_id>')
 def view_project(project_id):
     project = Project.query.get_or_404(project_id)
-    form = GoalForm()
-    return render_template('project.html', project=project, form=form)
+    goal_form = GoalForm()
+    list_form = ListForm()
+    return render_template('project.html', project=project, goal_form=goal_form, list_form=list_form)
 
 @app.route('/add_project', methods=['GET', 'POST'])
 def add_project():
@@ -118,6 +119,10 @@ class GoalForm(FlaskForm):
     deadline = DateField('Deadline', validators=[DataRequired()])
     submit = SubmitField('Add Goal')
 
+class ListForm(FlaskForm):
+    name = StringField('List Name', validators=[DataRequired()])
+    submit = SubmitField('Add List')
+
 @app.route('/project/<int:project_id>/add_goal', methods=['GET', 'POST'])
 def add_goal(project_id):
     project = Project.query.get_or_404(project_id)
@@ -156,18 +161,20 @@ def delete_goal(goal_id):
     return redirect(url_for('view_project', project_id=project_id))
 
 # List routes
-@app.route('/project/<int:project_id>/add_list', methods=['POST'])
+@app.route('/project/<int:project_id>/add_list', methods=['GET', 'POST'])
 def add_list(project_id):
     project = Project.query.get_or_404(project_id)
-    if request.method == 'POST':
+    form = ListForm()
+    if form.validate_on_submit():
         new_list = List(
-            name=request.form['name'],
+            name=form.name.data,
             project=project
         )
         db.session.add(new_list)
         db.session.commit()
         flash('List added successfully!', 'success')
-    return redirect(url_for('view_project', project_id=project.id))
+        return redirect(url_for('view_project', project_id=project.id))
+    return render_template('project.html', project=project, list_form=form, goal_form=GoalForm())
 
 @app.route('/list/<int:list_id>/add_item', methods=['POST'])
 def add_list_item(list_id):
