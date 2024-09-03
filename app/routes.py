@@ -1,7 +1,16 @@
 from flask import render_template, request, jsonify, redirect, url_for, flash
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, SelectField, SubmitField
+from wtforms.validators import DataRequired
 from app import app, db
 from app.models import Bucket, Project, Goal
 from datetime import datetime
+
+class ProjectForm(FlaskForm):
+    name = StringField('Project Name', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    bucket_id = SelectField('Bucket', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Add Project')
 
 # Main pages
 @app.route('/')
@@ -57,19 +66,22 @@ def view_project(project_id):
 
 @app.route('/add_project', methods=['GET', 'POST'])
 def add_project():
-    buckets = Bucket.query.all()
-    if request.method == 'POST':
-        bucket = Bucket.query.get(request.form['bucket_id'])
+    form = ProjectForm()
+    form.bucket_id.choices = [(b.id, b.name) for b in Bucket.query.all()]
+    
+    if form.validate_on_submit():
+        bucket = Bucket.query.get(form.bucket_id.data)
         new_project = Project(
-            name=request.form['name'],
-            description=request.form['description'],
+            name=form.name.data,
+            description=form.description.data,
             bucket=bucket
         )
         db.session.add(new_project)
         db.session.commit()
         flash('Project added successfully!', 'success')
         return redirect(url_for('view_bucket', bucket_id=bucket.id))
-    return render_template('add_project.html', buckets=buckets)
+    
+    return render_template('add_project.html', form=form)
 
 @app.route('/project/<int:project_id>/edit', methods=['GET', 'POST'])
 def edit_project(project_id):
