@@ -64,7 +64,8 @@ def view_project(project_id):
     project = Project.query.get_or_404(project_id)
     goal_form = GoalForm()
     list_form = ListForm()
-    return render_template('project.html', project=project, goal_form=goal_form, list_form=list_form)
+    list_item_form = ListItemForm()
+    return render_template('project.html', project=project, goal_form=goal_form, list_form=list_form, list_item_form=list_item_form)
 
 @app.route('/add_project', methods=['GET', 'POST'])
 def add_project():
@@ -176,12 +177,21 @@ def add_list(project_id):
         return redirect(url_for('view_project', project_id=project.id))
     return render_template('project.html', project=project, list_form=form, goal_form=GoalForm())
 
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+
+class ListItemForm(FlaskForm):
+    content = StringField('New Item', validators=[DataRequired()])
+    submit = SubmitField('Add Item')
+
 @app.route('/list/<int:list_id>/add_item', methods=['POST'])
 def add_list_item(list_id):
     list_ = List.query.get_or_404(list_id)
-    if request.method == 'POST':
+    form = ListItemForm()
+    if form.validate_on_submit():
         new_item = ListItem(
-            content=request.form['content'],
+            content=form.content.data,
             list=list_
         )
         db.session.add(new_item)

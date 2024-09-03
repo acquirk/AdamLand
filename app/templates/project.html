@@ -61,7 +61,8 @@
                 </ul>
                 <div class="card-footer">
                     <form action="{{ url_for('add_list_item', list_id=list.id) }}" method="POST" class="input-group">
-                        <input type="text" name="content" class="form-control" placeholder="New item" required>
+                        {{ list_item_form.csrf_token }}
+                        {{ list_item_form.content(class="form-control", placeholder="New item") }}
                         <button type="submit" class="btn btn-outline-secondary">Add</button>
                     </form>
                 </div>
