@@ -10,13 +10,22 @@
         <ul class="list-group">
             {% for goal in project.goals %}
                 <li class="list-group-item">
-                    <h5>{{ goal.description }}</h5>
-                    <p>Deadline: {{ goal.deadline.strftime('%Y-%m-%d') }}</p>
-                    <p>Status: {{ 'Completed' if goal.completed else 'In Progress' }}</p>
-                    <a href="{{ url_for('edit_goal', goal_id=goal.id) }}" class="btn btn-sm btn-primary">Edit</a>
-                    <form action="{{ url_for('delete_goal', goal_id=goal.id) }}" method="POST" class="d-inline">
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                    </form>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5>{{ goal.description }}</h5>
+                            <p class="mb-1">Deadline: {{ goal.deadline.strftime('%Y-%m-%d') }}</p>
+                            <p class="mb-1">Status: {{ 'Completed' if goal.completed else 'In Progress' }}</p>
+                        </div>
+                        <div>
+                            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text={{ goal.description|urlencode }}&dates={{ goal.deadline.strftime('%Y%m%d') }}/{{ goal.deadline.strftime('%Y%m%d') }}&details={{ 'Goal for ' + project.name|urlencode }}" target="_blank" class="btn btn-sm btn-outline-secondary mr-2" title="Add to Google Calendar">
+                                <i class="fas fa-calendar-plus"></i>
+                            </a>
+                            <a href="{{ url_for('edit_goal', goal_id=goal.id) }}" class="btn btn-sm btn-primary mr-2">Edit</a>
+                            <form action="{{ url_for('delete_goal', goal_id=goal.id) }}" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
                 </li>
             {% endfor %}
         </ul>
