@@ -21,9 +21,11 @@ class ProjectForm(FlaskForm):
     submit = SubmitField('Add Project')
 
 # Main pages
+from sqlalchemy.orm import joinedload
+
 @app.route('/')
 def index():
-    buckets = Bucket.query.all()
+    buckets = Bucket.query.options(joinedload(Bucket.projects)).all()
     return render_template('index.html', buckets=buckets)
 
 # Bucket routes

@@ -13,7 +13,7 @@
                 <p class="card-text">{{ bucket.advice }}</p>
                 
                 <ul>
-                    {% for project in buckets %}
+                    {% for project in bucket.projects %}
                     <li>
                         <a href="{{ url_for('view_project', project_id=project.id) }}" class="nav-link">{{ project.name }}</a>
                     </li>
