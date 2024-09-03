@@ -199,8 +199,12 @@ def add_list_item(list_id):
         flash('Item added successfully!', 'success')
     return redirect(url_for('view_project', project_id=list_.project_id))
 
+from flask import current_app
+
 @app.route('/list_item/<int:item_id>/toggle', methods=['POST'])
 def toggle_list_item(item_id):
+    if not current_app.config['WTF_CSRF_CHECK_DEFAULT']:
+        csrf.protect()
     item = ListItem.query.get_or_404(item_id)
     item.completed = not item.completed
     db.session.commit()
