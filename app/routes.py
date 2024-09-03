@@ -62,7 +62,8 @@ def delete_bucket(bucket_id):
 @app.route('/project/<int:project_id>')
 def view_project(project_id):
     project = Project.query.get_or_404(project_id)
-    return render_template('project.html', project=project)
+    form = GoalForm()
+    return render_template('project.html', project=project, form=form)
 
 @app.route('/add_project', methods=['GET', 'POST'])
 def add_project():
@@ -108,19 +109,30 @@ def view_goal(goal_id):
     goal = Goal.query.get_or_404(goal_id)
     return render_template('goal.html', goal=goal)
 
-@app.route('/project/<int:project_id>/add_goal', methods=['POST'])
+from flask_wtf import FlaskForm
+from wtforms import StringField, DateField, SubmitField
+from wtforms.validators import DataRequired
+
+class GoalForm(FlaskForm):
+    description = StringField('Description', validators=[DataRequired()])
+    deadline = DateField('Deadline', validators=[DataRequired()])
+    submit = SubmitField('Add Goal')
+
+@app.route('/project/<int:project_id>/add_goal', methods=['GET', 'POST'])
 def add_goal(project_id):
     project = Project.query.get_or_404(project_id)
-    if request.method == 'POST':
+    form = GoalForm()
+    if form.validate_on_submit():
         new_goal = Goal(
-            description=request.form['description'],
-            deadline=datetime.strptime(request.form['deadline'], '%Y-%m-%d'),
+            description=form.description.data,
+            deadline=form.deadline.data,
             project=project
         )
         db.session.add(new_goal)
         db.session.commit()
         flash('Goal added successfully!', 'success')
-    return redirect(url_for('view_project', project_id=project.id))
+        return redirect(url_for('view_project', project_id=project.id))
+    return render_template('project.html', project=project, form=form)
 
 @app.route('/goal/<int:goal_id>/edit', methods=['GET', 'POST'])
 def edit_goal(goal_id):
