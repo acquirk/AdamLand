@@ -10,6 +10,9 @@ from datetime import datetime
 def inject_buckets():
     buckets = Bucket.query.all()
     return dict(buckets=buckets)
+def inject_projects():
+    projects = Project.query.all()
+    return dict(projects=projects)
 
 class ProjectForm(FlaskForm):
     name = StringField('Project Name', validators=[DataRequired()])

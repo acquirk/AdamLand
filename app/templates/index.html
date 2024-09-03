@@ -3,17 +3,23 @@
 {% block title %}Big Picture{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Big Picture</h1>
 
 <div class="row">
     {% for bucket in buckets %}
     <div class="col-md-6 mb-4">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">{{ bucket.name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ bucket.subtitle }}</h6>
+                <h4 class="card-title"><a href="{{ url_for('view_bucket', bucket_id=bucket.id) }}" class="">{{ bucket.name }}</a></h4>
                 <p class="card-text">{{ bucket.advice }}</p>
-                <a href="{{ url_for('view_bucket', bucket_id=bucket.id) }}" class="btn btn-primary">Visit Bucket</a>
+                
+                <ul>
+                    {% for project in buckets %}
+                    <li>
+                        <a href="{{ url_for('view_project', project_id=project.id) }}" class="nav-link">{{ project.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
             </div>
         </div>
     </div>
