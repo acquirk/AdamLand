@@ -3,22 +3,26 @@
 {% block title %}Add New Bucket{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Add New Bucket</h1>
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title mb-4">Add New Bucket</h1>
 
-<form method="POST">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-    <div class="form-group">
-        <label for="name">Bucket Name</label>
-        <input type="text" class="form-control" id="name" name="name" required>
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="form-group">
+                <label for="name">Bucket Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="subtitle">Subtitle</label>
+                <input type="text" class="form-control" id="subtitle" name="subtitle" required>
+            </div>
+            <div class="form-group">
+                <label for="advice">Remember this:</label>
+                <textarea class="form-control" id="advice" name="advice" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Bucket</button>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="subtitle">Subtitle</label>
-        <input type="text" class="form-control" id="subtitle" name="subtitle" required>
-    </div>
-    <div class="form-group">
-        <label for="advice">Remember this:</label>
-        <textarea class="form-control" id="advice" name="advice" rows="3" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Bucket</button>
-</form>
+</div>
 {% endblock %}
