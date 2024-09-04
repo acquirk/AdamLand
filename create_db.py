@@ -18,6 +18,14 @@ def init_db():
             print("Database initialized with default buckets.")
         else:
             print("Database already contains buckets.")
+        
+        # Create Archive bucket if it doesn't exist
+        archive_bucket = Bucket.query.filter_by(name="Archive").first()
+        if not archive_bucket:
+            archive_bucket = Bucket(name="Archive", subtitle="Archived items", advice="Items moved here are no longer active but preserved for reference.")
+            db.session.add(archive_bucket)
+            db.session.commit()
+            print("Archive bucket created.")
 
 if __name__ == '__main__':
     init_db()
