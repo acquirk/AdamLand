@@ -73,10 +73,28 @@ def view_bucket(bucket_id):
 def add_inbox_item():
     form = InboxItemForm()
     if form.validate_on_submit():
+        destination = request.form.get('destination', '')
         new_item = InboxItem(content=form.content.data)
+        
+        if destination.startswith('bucket_'):
+            bucket_id = int(destination.split('_')[1])
+            new_item.bucket_id = bucket_id
+            flash('New idea added to bucket!', 'success')
+        elif destination.startswith('project_'):
+            project_id = int(destination.split('_')[1])
+            project = Project.query.get(project_id)
+            if project:
+                new_goal = Goal(description=form.content.data, project=project)
+                db.session.add(new_goal)
+                flash('New idea added as a goal to the project!', 'success')
+            else:
+                flash('Project not found.', 'error')
+                return redirect(url_for('index'))
+        else:
+            flash('New idea added to inbox!', 'success')
+        
         db.session.add(new_item)
         db.session.commit()
-        flash('New idea added to inbox!', 'success')
     return redirect(url_for('index'))
 
 @app.route('/assign_inbox_item/<int:item_id>', methods=['POST'])
