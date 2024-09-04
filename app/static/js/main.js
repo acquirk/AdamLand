@@ -63,4 +63,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         input.value = '';
     };
+
+    // Flash message close functionality
+    var closeButtons = document.querySelectorAll('.alert .close');
+    closeButtons.forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            var alert = this.closest('.alert');
+            alert.style.opacity = '0';
+            setTimeout(function() {
+                alert.style.display = 'none';
+            }, 300);
+        });
+    });
 });
