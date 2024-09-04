@@ -29,17 +29,33 @@
             <p class="card-text">No items in the bucket inbox.</p>
         {% endif %}
 
-        <h2 class="mt-4">Projects</h2>
-        {% if bucket.projects.all() %}
+        <h2 class="mt-4">Active Projects</h2>
+        {% set active_projects = bucket.projects.filter_by(archived=False).all() %}
+        {% if active_projects %}
             <ul class="list-group">
-            {% for project in bucket.projects %}
+            {% for project in active_projects %}
                 <li class="list-group-item">
                     <a href="{{ url_for('view_project', project_id=project.id) }}">{{ project.name }}</a>
                 </li>
             {% endfor %}
             </ul>
         {% else %}
-            <p class="card-text">No projects yet.</p>
+            <p class="card-text">No active projects.</p>
+        {% endif %}
+
+        <h2 class="mt-4">Archived Projects</h2>
+        {% set archived_projects = bucket.projects.filter_by(archived=True).all() %}
+        {% if archived_projects %}
+            <ul class="list-group">
+            {% for project in archived_projects %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('view_project', project_id=project.id) }}">{{ project.name }}</a>
+                    <span class="badge badge-secondary">Archived</span>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p class="card-text">No archived projects.</p>
         {% endif %}
 
         <div class="mt-4">

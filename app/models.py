@@ -16,6 +16,7 @@ class Project(db.Model):
     bucket_id = db.Column(db.Integer, db.ForeignKey('bucket.id'))
     goals = db.relationship('Goal', backref='project', lazy='dynamic')
     lists = db.relationship('List', backref='project', lazy='dynamic')
+    archived = db.Column(db.Boolean, default=False)
 
 class Goal(db.Model):
     id = db.Column(db.Integer, primary_key=True)

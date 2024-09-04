@@ -197,6 +197,22 @@ def delete_project(project_id):
     flash('Project deleted successfully!', 'success')
     return redirect(url_for('view_bucket', bucket_id=bucket_id))
 
+@app.route('/project/<int:project_id>/archive', methods=['POST'])
+def archive_project(project_id):
+    project = Project.query.get_or_404(project_id)
+    project.archived = True
+    db.session.commit()
+    flash('Project archived successfully!', 'success')
+    return redirect(url_for('view_bucket', bucket_id=project.bucket_id))
+
+@app.route('/project/<int:project_id>/unarchive', methods=['POST'])
+def unarchive_project(project_id):
+    project = Project.query.get_or_404(project_id)
+    project.archived = False
+    db.session.commit()
+    flash('Project unarchived successfully!', 'success')
+    return redirect(url_for('view_bucket', bucket_id=project.bucket_id))
+
 # Goal routes
 @app.route('/goal/<int:goal_id>')
 def view_goal(goal_id):
