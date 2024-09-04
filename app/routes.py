@@ -4,12 +4,38 @@ from wtforms import StringField, TextAreaField, SelectField, SubmitField
 from wtforms.validators import DataRequired
 from app import app, db, csrf
 from app.models import Bucket, Project, Goal, List, ListItem, InboxItem
+from flask import jsonify
+
+@app.route('/archive/<string:item_type>/<int:item_id>', methods=['POST'])
+def archive_item(item_type, item_id):
+    archive_bucket = Bucket.query.filter_by(name="Archive").first()
+    if not archive_bucket:
+        return jsonify({"success": False, "error": "Archive bucket not found"}), 404
+
+    if item_type == 'project':
+        item = Project.query.get_or_404(item_id)
+        item.bucket_id = archive_bucket.id
+    elif item_type == 'goal':
+        item = Goal.query.get_or_404(item_id)
+        item.project.bucket_id = archive_bucket.id
+    elif item_type == 'list':
+        item = List.query.get_or_404(item_id)
+        item.project.bucket_id = archive_bucket.id
+    elif item_type == 'inbox':
+        item = InboxItem.query.get_or_404(item_id)
+        item.bucket_id = archive_bucket.id
+    else:
+        return jsonify({"success": False, "error": "Invalid item type"}), 400
+
+    db.session.commit()
+    return jsonify({"success": True})
 from datetime import datetime
 
 @app.context_processor
 def inject_buckets():
     buckets = Bucket.query.all()
-    return dict(buckets=buckets)
+    archive_bucket = Bucket.query.filter_by(name="Archive").first()
+    return dict(buckets=buckets, archive_bucket=archive_bucket)
 def inject_projects():
     projects = Project.query.all()
     return dict(projects=projects)

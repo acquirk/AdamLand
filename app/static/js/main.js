@@ -79,3 +79,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 });
+
+function archiveItem(itemType, itemId) {
+    fetch(`/archive/${itemType}/${itemId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert('Error archiving item: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while archiving the item.');
+    });
+}
