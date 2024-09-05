@@ -11,7 +11,7 @@
                 <form method="POST" action="{{ url_for('add_inbox_item') }}">
                     {{ inbox_form.hidden_tag() }}
                     <div class="form-group">
-                        {{ inbox_form.content(class="form-control", placeholder="New idea") }}
+                        {{ inbox_form.content(class="form-control form-inbox", placeholder="New idea") }}
                     </div>
                     <div class="form-group">
                         <select name="destination" class="form-control">
