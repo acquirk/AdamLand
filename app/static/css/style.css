@@ -90,3 +90,7 @@ body {
     border-color: #4a0e4e;
     box-shadow: 0 0 0 0.2rem rgba(74, 14, 78, 0.25);
 }
+
+.form-inbox {
+    height: calc(4.5em + 0.75rem + 2px);
+}
