@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # Set a secret key for CSRF protection
-app.config['SECRET_KEY'] = 'your-secret-key'  # Replace with a real secret key
+app.config['SECRET_KEY'] = '4b2e2f12ff1e9c33a69f9fbd1f63b2a1'  # Replace with a real secret key
 
 # Initialize SQLAlchemy
 db = SQLAlchemy(app)
