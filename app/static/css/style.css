@@ -93,25 +93,52 @@ body {
     color: #e0e0e0;
 }
 
+.inbox-input-container {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .form-inbox {
     width: 100%;
-    height: calc(10em + 0.75rem + 2px);
-    margin-bottom: 2rem;
+    height: 80%;
+    font-size: 1.2em;
+    padding: 1em;
+    border-radius: 10px;
 }
 
-.bucket-container {
+#submitButton {
+    display: none;
+}
+
+.bucket-links-container {
+    margin-top: 2rem;
+}
+
+.bucket-links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 0.5rem;
 }
 
-.bucket-card {
-    flex: 0 0 calc(50% - 1rem);
-    margin-bottom: 1rem;
+.bucket-link {
+    background-color: #333;
+    color: #e0e0e0;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.bucket-link:hover {
+    background-color: #4a0e4e;
+    color: #fff;
 }
 
 @media (max-width: 768px) {
-    .bucket-card {
-        flex: 0 0 100%;
+    .form-inbox {
+        font-size: 1em;
     }
 }

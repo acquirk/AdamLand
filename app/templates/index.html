@@ -4,36 +4,22 @@
 
 {% block content %}
 
-<div class="row mb-4">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <form method="POST" action="{{ url_for('add_inbox_item') }}">
-                    {{ inbox_form.hidden_tag() }}
-                    <div class="form-group">
-                        {{ inbox_form.content(class="form-control form-inbox", placeholder="New idea") }}
-                    </div>
-                    <div class="form-group">
-                        <select name="destination" class="form-control">
-                            <option value="">Add to Inbox</option>
-                            <optgroup label="Buckets">
-                                {% for bucket in buckets %}
-                                <option value="bucket_{{ bucket.id }}">{{ bucket.name }}</option>
-                                {% endfor %}
-                            </optgroup>
-                            <optgroup label="Projects">
-                                {% for bucket in buckets %}
-                                    {% for project in bucket.projects %}
-                                    <option value="project_{{ project.id }}">{{ project.name }} ({{ bucket.name }})</option>
-                                    {% endfor %}
-                                {% endfor %}
-                            </optgroup>
-                        </select>
-                    </div>
-                    {{ inbox_form.submit(class="btn btn-primary") }}
-                </form>
-            </div>
+<div class="inbox-input-container">
+    <form id="inboxForm" method="POST" action="{{ url_for('add_inbox_item') }}">
+        {{ inbox_form.hidden_tag() }}
+        <div class="form-group">
+            {{ inbox_form.content(class="form-control form-inbox", placeholder="New idea", id="inboxInput") }}
         </div>
+        {{ inbox_form.submit(class="btn btn-primary", id="submitButton") }}
+    </form>
+</div>
+
+<div class="bucket-links-container">
+    <h5>Buckets</h5>
+    <div class="bucket-links">
+        {% for bucket in buckets %}
+        <a href="{{ url_for('view_bucket', bucket_id=bucket.id) }}" class="bucket-link">{{ bucket.name }}</a>
+        {% endfor %}
     </div>
 </div>
 
