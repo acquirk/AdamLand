@@ -1,9 +1,8 @@
 body {
-    background-image: url('../img/wood.jpg');
-    background-size: cover;
+    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
     background-attachment: fixed;
-    background-position: center;
     font-family: 'Arial', sans-serif;
+    color: #e0e0e0;
 }
 
 .container {
@@ -11,10 +10,10 @@ body {
 }
 
 .card {
-    background-color: rgba(255, 245, 230, 0.9);
+    background-color: rgba(40, 40, 40, 0.9);
     border: none;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 0 0 1px #d4a76a;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px #444;
     transition: 0.3s;
     margin-bottom: 20px;
     position: relative;
@@ -28,7 +27,7 @@ body {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(to right, #d4a76a, #e8c496, #d4a76a);
+    background: linear-gradient(to right, #4a0e4e, #6a1470, #4a0e4e);
 }
 
 .card:hover {
@@ -41,13 +40,13 @@ body {
 }
 
 .card-title {
-    color: #4a0e4e;
+    color: #e0e0e0;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
 .card-text {
-    color: #333;
+    color: #c0c0c0;
     font-size: 0.9em;
     line-height: 1.5;
 }
@@ -76,19 +75,22 @@ body {
 }
 
 .list-group-item {
-    background-color: #fff5e6;
-    border-color: #d4a76a;
+    background-color: #333;
+    border-color: #444;
+    color: #e0e0e0;
 }
 
 .form-control {
-    background-color: #fff5e6;
-    border-color: #d4a76a;
+    background-color: #333;
+    border-color: #444;
+    color: #e0e0e0;
 }
 
 .form-control:focus {
-    background-color: #fff;
+    background-color: #444;
     border-color: #4a0e4e;
     box-shadow: 0 0 0 0.2rem rgba(74, 14, 78, 0.25);
+    color: #e0e0e0;
 }
 
 .form-inbox {
